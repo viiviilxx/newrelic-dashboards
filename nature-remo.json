@@ -1,0 +1,130 @@
+{
+  "name": "Home Environment (Nature Remo)",
+  "description": "Home Environment metrics from Nature Remo",
+  "permissions": "PUBLIC_READ_ONLY",
+  "pages": [
+    {
+      "name": "Home Environment (Nature Remo)",
+      "description": null,
+      "widgets": [
+        {
+          "title": "Current Temperature",
+          "layout": {
+            "column": 1,
+            "row": 1,
+            "width": 4,
+            "height": 3
+          },
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "rawConfiguration": {
+            "legend": {
+              "enabled": true
+            },
+            "nrqlQueries": [
+              {
+                "accountId": 0,
+                "query": "SELECT latest(nature_remo.temperature) FROM Metric"
+              }
+            ],
+            "thresholds": {
+              "red": 28,
+              "yellow": 25
+            },
+            "yAxis": {
+              "label": "Celsius"
+            }
+          }
+        },
+        {
+          "title": "Temperature Trend (Last 24 Hours)",
+          "layout": {
+            "column": 5,
+            "row": 1,
+            "width": 8,
+            "height": 3
+          },
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.area"
+          },
+          "rawConfiguration": {
+            "legend": {
+              "enabled": true
+            },
+            "nrqlQueries": [
+              {
+                "accountId": 0,
+                "query": "SELECT average(nature_remo.temperature) FROM Metric TIMESERIES SINCE 1 day ago"
+              }
+            ],
+            "yAxis": {
+              "label": "Celsius",
+              "zero": false
+            }
+          }
+        },
+        {
+          "title": "Current Humidity",
+          "layout": {
+            "column": 1,
+            "row": 4,
+            "width": 4,
+            "height": 3
+          },
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.billboard"
+          },
+          "rawConfiguration": {
+            "gauge": {
+              "max": 100,
+              "min": 0
+            },
+            "nrqlQueries": [
+              {
+                "accountId": 0,
+                "query": "SELECT latest(nature_remo.humidity) FROM Metric"
+              }
+            ],
+            "thresholds": {
+              "red": 70,
+              "yellow": 60
+            }
+          }
+        },
+        {
+          "title": "Humidity Trend (Last 24 Hours)",
+          "layout": {
+            "column": 5,
+            "row": 4,
+            "width": 8,
+            "height": 3
+          },
+          "linkedEntityGuids": null,
+          "visualization": {
+            "id": "viz.line"
+          },
+          "rawConfiguration": {
+            "legend": {
+              "enabled": true
+            },
+            "nrqlQueries": [
+              {
+                "accountId": 0,
+                "query": "SELECT average(nature_remo.humidity) FROM Metric TIMESERIES SINCE 1 day ago"
+              }
+            ],
+            "yAxis": {
+              "label": "Percent",
+              "max": 100,
+              "min": 0
+            }
+          }
+        },
+        {
+          "title": "Environment Comfort Index (Discomfort Index)",
+          "layout": {
+            "column":
